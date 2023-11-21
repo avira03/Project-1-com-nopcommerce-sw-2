@@ -1,6 +1,7 @@
 package testsuite;
 
 import browserfactory.BaseTest;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +59,6 @@ public class RegisterTest extends BaseTest {
         dropdownYear.selectByVisibleText("1984");
 
 
-
         WebElement email = driver.findElement(By.id("Email"));
         email.sendKeys("test_Email@gmail.com");
 
@@ -77,6 +77,11 @@ public class RegisterTest extends BaseTest {
 
 
         Assert.assertEquals("Not redirected to Login page", expectedText, actualText);
+    }
 
+    @After
+    public void tearDown() {
+
+        closeBrowser();
     }
 }

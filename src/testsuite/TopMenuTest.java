@@ -1,6 +1,7 @@
 package testsuite;
 
 import browserfactory.BaseTest;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -184,35 +185,38 @@ public class TopMenuTest extends BaseTest {
         Assert.assertEquals("Not redirected to Login page", expectedResult, actualResult);
     }
 
-        @Test
-        public void userShouldNavigateToGiftCardsPageSuccessfully() {
+    @Test
+    public void userShouldNavigateToGiftCardsPageSuccessfully() {
 
-            String expectedResult = "Gift Cards";
+        String expectedResult = "Gift Cards";
 
-            String email = "abcd@gmail.com";
-            String pass = "123456";
-            WebElement login = driver.findElement(By.xpath("//a[text() = 'Log in'] "));
-            login.click();
+        String email = "abcd@gmail.com";
+        String pass = "123456";
+        WebElement login = driver.findElement(By.xpath("//a[text() = 'Log in'] "));
+        login.click();
 
-            WebElement loginEmail = driver.findElement(By.id("Email"));
-            loginEmail.sendKeys(email);
+        WebElement loginEmail = driver.findElement(By.id("Email"));
+        loginEmail.sendKeys(email);
 
-            WebElement loginPass = driver.findElement(By.id("Password"));
-            loginPass.sendKeys(pass);
-
-
-            WebElement loginIn = driver.findElement(By.xpath("//button[text()='Log in']"));
-            loginIn.click();
+        WebElement loginPass = driver.findElement(By.id("Password"));
+        loginPass.sendKeys(pass);
 
 
-            WebElement menu = driver.findElement(By.xpath("//a[text()='Gift Cards ']"));
-            String actualResult = menu.getText();
-
-            Assert.assertEquals("Not redirected to Login page", expectedResult, actualResult);
+        WebElement loginIn = driver.findElement(By.xpath("//button[text()='Log in']"));
+        loginIn.click();
 
 
-        }
+        WebElement menu = driver.findElement(By.xpath("//a[text()='Gift Cards ']"));
+        String actualResult = menu.getText();
+
+        Assert.assertEquals("Not redirected to Login page", expectedResult, actualResult);
     }
 
+    @After
+    public void tearDown() {
+
+        closeBrowser();
+    }
+}
 
 
